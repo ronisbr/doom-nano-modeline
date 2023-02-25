@@ -21,7 +21,7 @@ Add the following code in your `packages.el`:
 And the following code in you `config.el`:
 
 ``` emacs-lisp
-(use-pacakge! doom-nano-modeline
+(use-package! doom-nano-modeline
   :config
   (doom-nano-modeline-mode 1)
   (global-hide-mode-line-mode 1))
