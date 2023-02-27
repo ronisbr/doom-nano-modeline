@@ -237,8 +237,6 @@ If HIDE-EVIL-MODE is nil, the Evil mode state is not shown in the modeline."
 
 (provide 'doom-nano-modeline-core)
 
-(provide 'doom-nano-modeline-core)
-
 ;; Local Variables:
 ;; coding: utf-8
 ;; byte-compile-warnings: (not obsolete)

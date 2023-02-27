@@ -193,8 +193,6 @@
 
 (provide 'doom-nano-modeline-modes)
 
-(provide 'doom-nano-modeline-modes)
-
 ;; Local Variables:
 ;; coding: utf-8
 ;; byte-compile-warnings: (not obsolete)
