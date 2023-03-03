@@ -194,7 +194,8 @@ If HIDE-EVIL-MODE is nil, the Evil mode state is not shown in the modeline."
                         (if (and active (cdr element))
                             (propertize (car element) 'face (cdr element))
                           (propertize (car element) 'face modeline-face)))
-                      left)
+                      left
+                      "")
                    "")))
 
          ;; Assemble the right string with the highlights.
@@ -210,7 +211,8 @@ If HIDE-EVIL-MODE is nil, the Evil mode state is not shown in the modeline."
                          (if (and active (cdr element))
                              (propertize (car element) 'face (cdr element))
                            (propertize (car element) 'face modeline-face)))
-                       right)
+                       right
+                       "")
                     "")))
 
          ;; Compute the right string length, which is used to align the string
