@@ -38,7 +38,8 @@
 (defun doom-nano-modeline-default-mode ()
   "Render the modeline for the default mode."
   (doom-nano-modeline--render (doom-nano-modeline-buffer-name-vc-and-major-mode)
-                              (append (doom-nano-modeline-visual-selection-information)
+                              (append (funcall doom-nano-modeline-append-information)
+                                      (doom-nano-modeline-visual-selection-information)
                                       (doom-nano-modeline-cursor-position)
                                       (doom-nano-modeline--space)
                                       (doom-nano-modeline-org-clock-timer))))
@@ -88,7 +89,8 @@
   "Render the modeline if `org-mode'."
   (doom-nano-modeline--render
    (doom-nano-modeline-org-mode-buffer-name-and-major-mode)
-   (append (doom-nano-modeline-visual-selection-information)
+   (append (funcall doom-nano-modeline-append-information)
+           (doom-nano-modeline-visual-selection-information)
            (doom-nano-modeline-cursor-position)
            (doom-nano-modeline--space)
            (doom-nano-modeline-org-clock-timer))))

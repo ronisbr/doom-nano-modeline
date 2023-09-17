@@ -58,6 +58,19 @@
   "Default mode to evaluate if no match was found in `doom-nano-modeline-mode-formats'."
   :type 'function)
 
+(defcustom doom-nano-modeline-append-information (lambda () nil)
+  "Return a list of elements to be appended to the right side of the modeline.
+
+The returned value must be a list in which each element has the following
+syntax:
+
+    (text . face)
+
+where TEXT will be decorated with FACE.
+
+Notice that this function must provide the spacing, if required."
+  :type 'function)
+
 (defcustom doom-nano-modeline-mode-format-activate-hook nil
   "Add hooks on mode activation."
   :type 'hook
