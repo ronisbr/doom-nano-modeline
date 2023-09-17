@@ -5,13 +5,6 @@
 ;; This package was highly based on N Λ N O modeline by Nicolas P. Rougier
 ;; <Nicolas.Rougier@inria.fr>.
 ;;
-;; Author           : Ronan Arraes Jardim Chagas
-;; Created          : January 2023
-;; Keywords         : mode-line, header-line
-;; Package-Requires : ((emacs "28") (doom-themes "2"))
-;; URL              : https://github.com/ronisbr/doom-nano-modeline
-;; Version          : 0.1.0
-;;
 ;;; License:
 ;; This file is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
