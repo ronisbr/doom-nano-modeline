@@ -42,7 +42,7 @@ Doom N Λ N O theme.
 The package provides some faces to customize its design. Check the available
 options under the group name `doom-nano-modeline-`.
 
-### Customizing major modes
+### Customizing Major Modes
 
 If you want to customize the modeline in a particular mode, you need to add a
 new entry to the variable `doom-nano-modeline-mode-formats`. This new entry must
@@ -58,3 +58,34 @@ be a property list with the following entries:
   loaded.
 - `on-inactivate` (**OPTIONAL**): A functions that will be run when the modeline
   is deactivated.
+
+### Appending Information to the Right Side
+
+The user can append information to the mode-line right side, which will be shown
+to the left of the cursor position. In this case, we need to provide a function
+to the custom variable `doom-nano-modeline-append-information` that must return
+a list in which each element is:
+
+```
+(text . face)
+```
+
+where `text` will be rendered using `face`. Hence, if the user wants to show,
+for example, the buffer encoding, they can do:
+
+```emacs-lisp
+(defun get-buffer-encoding ()
+  "Return the encoding of the current buffer."
+  (let* ((sys (coding-system-plist buffer-file-coding-system))
+         (cat (plist-get sys :category))
+         (sym (if (memq cat
+                        '(coding-category-undecided coding-category-utf-8))
+                  'utf-8
+                (plist-get sys :name)))
+         (str (upcase (symbol-name sym))))
+    `((,str . font-lock-comment-face)
+      (" " . nil))))
+
+(setq doom-nano-modeline-append-information #'get-buffer-encoding)
+```
+
