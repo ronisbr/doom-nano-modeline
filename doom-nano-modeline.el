@@ -10,7 +10,7 @@
 ;; Keywords         : mode-line, header-line
 ;; Package-Requires : ((emacs "28") (doom-themes "2"))
 ;; URL              : https://github.com/ronisbr/doom-nano-modeline
-;; Version          : 0.1.0
+;; Version          : 0.2.0
 ;;
 ;;; Usage:
 ;; 1. Clone this repository to a directory.
