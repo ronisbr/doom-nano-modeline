@@ -173,6 +173,10 @@
   '((t (:inherit font-lock-comment-face)))
   "Face for the version control branch name.")
 
+(defface doom-nano-modeline-visual-selection-information-face
+  '((t (:inherit font-lock-builtin-face)))
+  "Face for the visual selection information.")
+
 ;; Internal variables.
 (defvar doom-nano-modeline--saved-mode-line-format nil)
 (defvar doom-nano-modeline--saved-header-line-format nil)

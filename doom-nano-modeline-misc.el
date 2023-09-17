@@ -112,6 +112,46 @@
   "Return the cursor position in the current buffer."
   `((,(format-mode-line "%l:%c") . doom-nano-modeline-cursor-position-face)))
 
+(defun doom-nano-modeline-visual-selection-information ()
+  "Return information about the visual selection in the current buffer."
+  ;; We should check if we have an active mark or if we are in evil visual
+  ;; state.
+  (when (or mark-active
+            (and (bound-and-true-p evil-local-mode)
+                 (eq evil-state 'visual)))
+
+    (cl-destructuring-bind (beg . end)
+        ;; Obtain the beginning and end of the visual selection depending if we
+        ;; are in evil mode or not.
+        (if (and (bound-and-true-p evil-local-mode)
+                 (eq evil-state 'visual))
+            (cons evil-visual-beginning evil-visual-end)
+          (cons (region-beginning) (region-end)))
+
+      (let* ((lines (count-lines beg (min end (point-max))))
+             (str (concat (cond (;; Visual block mode.
+                                  (or (bound-and-true-p rectangle-mark-mode)
+                                      (and (bound-and-true-p evil-visual-selection)
+                                           (eq 'block evil-visual-selection)))
+                                  (let ((cols (abs (- (save-excursion
+                                                        (goto-char end)
+                                                        (current-column))
+                                                      (save-excursion
+                                                        (goto-char beg)
+                                                        (current-column))))))
+                                    (format "[%dL x %dC]" lines cols)))
+                                 ;; Visual line mode.
+                                 ((and (bound-and-true-p evil-visual-selection)
+                                       (eq evil-visual-selection 'line))
+                                  (format "<%dL>" lines))
+                                 ;; Visual mode.
+                                 ((> lines 1)
+                                  (format "<%dL, %dC>" lines (- end beg)))
+                                 (t
+                                  (format "<%dC>" (- end beg)))))))
+        `((,str . doom-nano-modeline-visual-selection-information-face)
+          (" " . nil))))))
+
 (defun doom-nano-modeline--get-org-title ()
   "Get the `+title' property of an org file. If it does not exits, return nil."
   (let ((org-title (org-collect-keywords '("TITLE"))))
